@@ -1,4 +1,7 @@
 provider "aws" {
+  access_key = var.AWS_ACCESS_KEY
+  secret_key = var.AWS_SECRET_KEY
+  tokem = var.AWS_TOKEN
   region = var.aws_region
 }
 
@@ -35,7 +38,7 @@ resource "aws_security_group" "security_jenkins_port" {
   }
 }
 
-resource "aws_instance" "myFirstInstance" {
+resource "aws_instance" "spsFirstInstance" {
   ami = "ami-0b9064170e32bde34"
   key_name = var.key_name
   instance_type = var.instance_type
@@ -46,7 +49,7 @@ resource "aws_instance" "myFirstInstance" {
 }
 
 # Create Elastic IP address
-resource "aws_eip" "myFirstInstance" {
+resource "aws_eip" "spsFirstInstance" {
   vpc      = true
   instance = aws_instance.myFirstInstance.id
 tags= {
